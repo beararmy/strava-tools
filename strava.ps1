@@ -8,11 +8,11 @@ $UNIXDateLastRun = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $var_
 
 function Strava-NewSinceLast {
     param ($LastRun)
-    $e = @{
+    $responseParams = @{
         Uri     = "https://www.strava.com/api/v3/athlete/activities?after=$LastRun"
         Headers = @{"Authorization" = "Bearer $var_bearer"}
     }
-    $response = Invoke-RestMethod @e
+    $response = Invoke-RestMethod @responseParams
     return $response
 } #Strava-NewSinceLast
 
