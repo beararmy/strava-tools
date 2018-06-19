@@ -4,12 +4,12 @@ $var_athlete = $config.var_athlete
 $var_lastrun = $config.var_lastrun
 $var_bearer = $config.var_bearer
 
-$UNIXDateLastRun = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $var_lastrun).TotalSeconds
+$var_lastrun_unix_ts = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $var_lastrun).TotalSeconds
 
 function Strava-NewSinceLast {
     param ($LastRun)
     $responseParams = @{
-        Uri     = "https://www.strava.com/api/v3/athlete/activities?after=$LastRun"
+        Uri     = "https://www.strava.com/api/v3/athlete/activities?after=$var_lastrun_unix_ts&per_page=100"
         Headers = @{"Authorization" = "Bearer $var_bearer"}
     }
     $response = Invoke-RestMethod @responseParams
@@ -99,7 +99,7 @@ function Strava-CheckCommute {
 #Strava-CheckCommute -ActivityID 1626198717
 
 # Eventually this will enable periodic importing and background running, pulls data since -LastRun
-#Strava-NewSinceLast -LastRun $UNIXDateLastRun -Bearer $var_bearer | ft
+#Strava-NewSinceLast -LastRun $var_lastrun_unix_ts -Bearer $var_bearer | ft
 
 # Generic table of details for an activity
 #Strava-Details -ActivityID 1626198717 -Bearer $var_bearer | ft
