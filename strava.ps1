@@ -18,22 +18,22 @@ function Strava-NewSinceLast {
 
 function Strava-Details {
     param ($ActivityID)
-    $e = @{
+    $responseParams = @{
         Uri     = "https://www.strava.com/api/v3/activities/$ActivityID"
         Headers = @{"Authorization" = "Bearer $var_bearer"}
     }
-    $response = Invoke-RestMethod @e
+    $response = Invoke-RestMethod @responseParams
     return $response
 } #Strava-Details
 
 function Strava-CheckCommute {
     param ($ActivityID)
     $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
-    $e = @{
+    $responseParams = @{
         Uri     = "https://www.strava.com/api/v3/activities/$ActivityID"
         Headers = @{"Authorization" = "Bearer $var_bearer"}
     }
-    $response = Invoke-RestMethod @e
+    $response = Invoke-RestMethod @responseParams
 
     # Set some local variables
     $CommuteChance = 0
