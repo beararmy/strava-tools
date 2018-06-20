@@ -127,3 +127,6 @@ function Strava-CheckCommute {
 
 # Generic table of details for an activity
 #Strava-Details -ActivityID 1626198717 -Bearer $var_bearer | ft
+
+# Once there's a bit more logic and something to get the Oauth key this will set as Commute in strava
+#Strava-SetAsCommute -ActivityID 1631078707 -Direction Workwards
