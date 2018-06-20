@@ -3,6 +3,7 @@ $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
 $var_athlete = $config.var_athlete
 $var_lastrun = $config.var_lastrun
 $var_bearer = $config.var_bearer
+$var_writable_bearer = $config.var_writable_bearer
 
 $var_lastrun_unix_ts = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $var_lastrun).TotalSeconds
 
@@ -25,6 +26,29 @@ function Strava-Details {
     $response = Invoke-RestMethod @responseParams
     return $response
 } #Strava-Details
+
+function Strava-SetAsCommute {
+    param ($ActivityID, $Direction)
+
+    if ($ActivityID -and $Direction) {
+    
+        if ($Direction -eq "Workwards") {
+            $re_name = $config.commute_settings.title_workward
+        }
+        elseif ($Direction -eq "Homewards") {
+            $re_name = $config.commute_settings.title_homeward
+        }
+        $responseParams = @{
+            Uri     = "https://www.strava.com/api/v3/activities/$ActivityID`?name=$re_name&commute=1"
+            Headers = @{"Authorization" = "Bearer $var_writable_bearer"}
+        }
+        $response = Invoke-RestMethod -Method put @responseParams
+        Write-Verbose "[WRITE] Updated $ActivityID name to $re_name"
+    }
+    else {
+        Write-Error "AcitivityID and Direction are required"
+    }
+} #Strava-SetAsCommute
 
 function Strava-CheckCommute {
     param ($ActivityID)
