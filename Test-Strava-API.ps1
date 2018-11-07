@@ -2,7 +2,7 @@
 $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
 $Athlete = $config.Strava.Athlete
 $Bearer = $config.Strava.Bearer
-function Check-Strava-API {
+function Test-Strava-API {
     try {
         $responseParams = @{
             Uri     = "https://www.strava.com/api/v3/athletes/$Athlete"
@@ -19,4 +19,4 @@ function Check-Strava-API {
     }
     return
 }
-#Check-Strava-API
+#Test-Strava-API

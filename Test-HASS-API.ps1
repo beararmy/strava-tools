@@ -6,7 +6,7 @@ $Port = $config.hass.Port
 $API_Key = $config.hass.API_Key
 $healthy_API_response = $config.hass.healthy_API_response
 
-function Check-HASS-API {
+function Test-HASS-API {
     try {
         $response = (Invoke-RestMethod -Method GET -Uri "http://$Server`:$Port/api/?api_password=$API_Key")
     }
@@ -16,4 +16,4 @@ function Check-HASS-API {
         [bool]($response.PSobject.Properties -match $healthy_API_response)
     }
 }
-#Check-HASS-API
+#Test-HASS-API
