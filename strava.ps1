@@ -1,9 +1,9 @@
 $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
 
-$var_athlete = $config.var_athlete
-$var_lastrun = $config.var_lastrun
-$var_bearer = $config.var_bearer
-$var_writable_bearer = $config.var_writable_bearer
+$var_athlete = $config.strava.athlete
+$var_lastrun = $config.strava.lastrun
+$var_bearer = $config.strava.bearer
+$var_writable_bearer = $config.strava.writable_bearer
 
 $var_lastrun_unix_ts = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $var_lastrun).TotalSeconds
 
