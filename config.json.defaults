@@ -1,0 +1,14 @@
+{
+    "hass" : {
+        "Server": "CHANGEME: HASS Server name",
+        "Port": "8123",
+        "API_Key": "API key defined in http for HASS",
+        "healthy_API_response": "API Running."
+    },
+    "Strava" : {
+        "Athlete" : "Strava athlete ID",
+        "Lastrun" : "01/10/2018 - Leave this alone for now, in time this will get set properly",
+        "Bearer" : "-Your Access Token- from strava website",
+        "WritableBearer" : "to be completed at a later date"
+    }
+}
