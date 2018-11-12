@@ -1,10 +1,11 @@
 function Test-HASS-API {
 
-$config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
-$Server = $config.hass.Server
-$Port = $config.hass.Port
-$API_Key = $config.hass.API_Key
-$healthy_API_response = $config.hass.healthy_API_response
+    $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
+    $Server = $config.hass.Server
+    $Port = $config.hass.Port
+    $API_Key = $config.hass.API_Key
+
+    $healthy_API_response = $config.hass.healthy_API_response
 
     try {
         $response = (Invoke-RestMethod -Method GET -Uri "http://$Server`:$Port/api/?api_password=$API_Key")
