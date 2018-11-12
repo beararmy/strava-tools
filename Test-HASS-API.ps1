@@ -14,6 +14,10 @@ function Test-HASS-API {
             Write-Verbose "Returned $response, expected $healthy_API_response"
             return $true
         }
+        else {
+            Write-Verbose "Returned $response, expected $healthy_API_response"
+            return $false
+        }
     }
     catch {
         Write-Verbose "Returned $response, expected $healthy_API_response"
