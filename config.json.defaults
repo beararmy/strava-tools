@@ -1,14 +1,40 @@
 {
-    "hass" : {
-        "Server": "CHANGEME: HASS Server name",
-        "Port": "8123",
-        "API_Key": "API key defined in http for HASS",
-        "healthy_API_response": "API Running."
-    },
-    "Strava" : {
-        "Athlete" : "Strava athlete ID",
-        "Lastrun" : "01/10/2018 - Leave this alone for now, in time this will get set properly",
-        "Bearer" : "-Your Access Token- from strava website",
-        "WritableBearer" : "to be completed at a later date"
-    }
+    "hass":  {
+                 "Server": "--Home Assistant Server Name / IP--",
+                 "Port": "8123",
+                 "API_Key": "--Home Assistant API Key--",
+                 "healthy_API_response": "API Running."
+             },
+    "Strava":  {
+                   "Athlete" : "Strava athlete ID",
+                   "Lastrun":  "01/10/2018",
+                   "ClientID":  "--Strava Client ID--",
+                   "ClientSecret":  "--Strava Client Secret--",
+                   "KallbackURI":  "--URL where /kallbakk.php lives--",
+                   "CurrrentRefreshToken":  "--overwritten by app--",
+                   "CurrentAccessToken":  "--overwritten by app--",
+                   "CurrentTokenExpiresAt":  "--overwritten by app--"
+               },
+    "phpCallback":  {
+                        "URI":  "x",
+                        "API_GET_QRY":  "--GET for kallbakk.php--",
+                        "API_KEY":  "--Key for kallbakk.php--"
+                    },
+    "weather":  {
+                    "API_Key":  "--OpenWeatherMap API key--",
+                    "Weather_API_URI":  "http://api.openweathermap.org/data/2.5/",
+                    "Weather_Test_City":  "2657356",
+                    "temp_low_sketchy":  "5",
+                    "temp_low_good":  "7",
+                    "temp_sweetspot":  "15",
+                    "temp_sweetspot_range":  "3",
+                    "temp_high_good":  "25",
+                    "temp_high_sketchy":  "30",
+                    "windspeed_sketchy":  "7",
+                    "windspeed_bad":  "9",
+                    "rain_sketchy":  "1",
+                    "rain_bad":  "5",
+                    "cycling_out_time":  "06:00:00",
+                    "cycling_home_time":  "15:00:00"
+                }
 }
