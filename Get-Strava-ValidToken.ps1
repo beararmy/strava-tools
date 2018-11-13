@@ -4,7 +4,9 @@ $ClientSecret = $config.Strava.ClientSecret
 $KallbackURI = $config.Strava.KallbackURI
 $KallbackGetQry = $config.phpCallback.API_GET_QRY
 $KallbackAPIKey = $config.phpCallback.API_KEY
+$KallbackURI = $KallbackURI+"?KallbackAPIKey="+$KallbackAPIKey
 
+. './Test-Strava-ValidToken.ps1'
 $CurrentlyValidToken = (Test-Strava-ValidToken)
 #function Get-Strava-OAuth2 {
 if ($CurrentlyValidToken -eq $true) {
@@ -19,7 +21,7 @@ sleep 10 #we're sleeping to allow strava to talk to php page
 
 #Get results of Second Leg
 try {
-    $response=(Invoke-WebRequest -Uri "$KallbackURI`?$KallbackGetQry=$KallbackAPIKey")
+    $response=(Invoke-WebRequest -Uri "$KallbackURI`&$KallbackGetQry=yesplease")
     $code=$response.Content
 } catch {
     return $False
