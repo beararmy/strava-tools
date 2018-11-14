@@ -1,7 +1,7 @@
 function Set-StravaActivityAsCommute {
     param (
-        [parameter(Mandatory=$true)]$ActivityID,
-        [parameter(Mandatory=$true)]$Direction    
+        [parameter(Mandatory = $true)]$ActivityID,
+        [parameter(Mandatory = $true)]$Direction    
     )
 
     $TokenTest = (Test-Strava-ValidToken)
