@@ -1,8 +1,9 @@
 function Get-Strava-NewSinceLast {
     param (
-        $LastRun    
+        $LastRun,
+        [bool]$UpdateLastRun    
     )
-
+    $UpdateLastRun
     $TokenTest = (Test-Strava-ValidToken)
     . '.\Test-Strava-ValidToken.ps1'
     if ($TokenTest -eq $False) {
@@ -14,6 +15,7 @@ function Get-Strava-NewSinceLast {
 
     $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
     If (!$lastrun) { $lastrun = $config.strava.lastrun }
+    If (!$UpdateLastRun) { $UpdateLastRun = $False }
     $bearer = $config.strava.CurrentAccessToken
     $lastrun_unix_ts = (New-TimeSpan -Start (Get-Date -Date "01/01/1970") -End $lastrun).TotalSeconds
 
@@ -22,6 +24,15 @@ function Get-Strava-NewSinceLast {
         Headers = @{"Authorization" = "Bearer $bearer"}
     }
     $response = Invoke-RestMethod @responseParams
+
+    if ($UpdateLastRun -eq $True ) {
+        Write-Verbose "Updating Last Run date"
+        $datenow = (Get-Date -UFormat "%d/%m/%Y")
+        $pathToJson = '.\config.json'
+        $a = Get-Content $pathToJson | ConvertFrom-Json
+        $a.Strava.'LastRun' = $datenow
+        $a | ConvertTo-Json | set-content $pathToJson
+    }
     return $response
 }
 #Get-Strava-NewSinceLast | Format-Table -AutoSize
