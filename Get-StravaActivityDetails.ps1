@@ -15,11 +15,11 @@ function Get-StravaActivityDetails {
     $config = Get-Content -Path .\config.json -Raw | ConvertFrom-Json
     $bearer = $config.strava.CurrentAccessToken
 
-        $responseParams = @{
-            Uri     = "https://www.strava.com/api/v3/activities/$ActivityID"
-            Headers = @{"Authorization" = "Bearer $bearer"}
-        }
-        $response = Invoke-RestMethod @responseParams
-        return $response
+    $responseParams = @{
+        Uri     = "https://www.strava.com/api/v3/activities/$ActivityID"
+        Headers = @{"Authorization" = "Bearer $bearer"}
     }
-    #Get-StravaActivityDetails
+    $response = Invoke-RestMethod @responseParams
+    return $response
+}
+#Get-StravaActivityDetails
