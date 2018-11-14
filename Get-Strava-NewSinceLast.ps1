@@ -3,7 +3,7 @@ function Get-Strava-NewSinceLast {
         $LastRun,
         [bool]$UpdateLastRun    
     )
-    $UpdateLastRun
+
     $TokenTest = (Test-Strava-ValidToken)
     . '.\Test-Strava-ValidToken.ps1'
     if ($TokenTest -eq $False) {
