@@ -25,7 +25,7 @@ function Test-AllThings {
         $result = (Test-Strava-ValidToken)
         if ($result -eq $true) {
             Write-Host "Strava-ValidToken " -NoNewline ; Write-Host -ForegroundColor Green "Success"
-            $done = '1'
+            $done = 1
         }
         elseif ($result -eq $false) {
             Write-Host "Strava-ValidToken " -NoNewline ; Write-Host -ForegroundColor Red "Failed"
@@ -36,7 +36,7 @@ function Test-AllThings {
             }
             catch {
                 Write-Host "Strava-ValidToken " -NoNewline ; Write-Host -ForegroundColor Red "FAILED TO RENEW TOKEN"
-                $done = '1'
+                $done = 1
             }
         }
     }
