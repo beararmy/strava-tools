@@ -3,8 +3,8 @@ function Get-StravaActivityDetails {
         [parameter(Mandatory = $true)]$ActivityID
     )
 
-    $TokenTest = (Test-Strava-ValidToken)
     . '.\Test-Strava-ValidToken.ps1'
+    $TokenTest = (Test-Strava-ValidToken)
     if ($TokenTest -eq $False) {
         Write-Verbose "Token is invalid."
     }

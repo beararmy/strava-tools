@@ -4,9 +4,9 @@ function Get-Strava-NewSinceLast {
         [bool]$UpdateLastRun    
     )
 
-    $TokenTest = (Test-Strava-ValidToken)
     . '.\Test-Strava-ValidToken.ps1'
-    if ($TokenTest -eq $False) {
+    $TokenTest = (Test-Strava-ValidToken)
+        if ($TokenTest -eq $False) {
         Write-Verbose "Token is invalid."
     }
     elseif ($TokenTest -eq $True) {
