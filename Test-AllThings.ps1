@@ -3,6 +3,7 @@ function Test-AllThings {
     . "./Test-OpenWeather-API.ps1"
     . "./Test-Strava-API.ps1"
     . "./Test-Strava-ValidToken.ps1"
+    . "./Test-HolidayDayPage.ps1"
     ########################################################        
     $result = (Test-HASS-API)
     if ($result -eq $true) {
@@ -47,6 +48,15 @@ function Test-AllThings {
     }
     elseif ($result -eq $false) {
         Write-Host "Strava-API " -NoNewline ; Write-Host -ForegroundColor Red "Failed"
+        
+    }
+    ########################################################
+    $result = (Test-HolidayDayPage)
+    if ($result -eq $true) {        
+        Write-Host "HolidayDayPage " -NoNewline ; Write-Host -ForegroundColor Green "Success"
+    }
+    elseif ($result -eq $false) {
+        Write-Host "HolidayDayPage " -NoNewline ; Write-Host -ForegroundColor Red "Failed"
         
     }
     ########################################################
